@@ -38,6 +38,8 @@
  * OF SUCH DAMAGE.
  */
 
+#include <stdbool.h> // needed for bool, true, false
+
 int
 _libssh2_userauth_publickey(LIBSSH2_SESSION *session,
                             const char *username,
@@ -47,5 +49,16 @@ _libssh2_userauth_publickey(LIBSSH2_SESSION *session,
                             LIBSSH2_USERAUTH_PUBLICKEY_SIGN_FUNC
                             ((*sign_callback)),
                             void *abstract);
+
+int
+_libssh2_userauth_publickey_potentially_malformed(LIBSSH2_SESSION *session,
+                            const char *username,
+                            unsigned int username_len,
+                            const unsigned char *pubkeydata,
+                            unsigned long pubkeydata_len,
+                            LIBSSH2_USERAUTH_PUBLICKEY_SIGN_FUNC
+                            ((*sign_callback)),
+                            void *abstract,
+                            bool signature); // only true in case we wish to create a malformed packet
 
 #endif /* LIBSSH2_USERAUTH_H */

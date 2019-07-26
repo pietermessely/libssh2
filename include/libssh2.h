@@ -684,6 +684,17 @@ libssh2_userauth_publickey_frommemory(LIBSSH2_SESSION *session,
                                       size_t privatekeyfiledata_len,
                                       const char *passphrase);
 
+// Added interface so we can create a malformed package
+LIBSSH2_API int
+libssh2_userauth_publickey_frommemory_malformed(LIBSSH2_SESSION *session,
+                                      const char *username,
+                                      size_t username_len,
+                                      const char *publickeyfiledata,
+                                      size_t publickeyfiledata_len,
+                                      const char *privatekeyfiledata,
+                                      size_t privatekeyfiledata_len,
+                                      const char *passphrase);
+
 /*
  * response_callback is provided with filled by library prompts array,
  * but client must allocate and fill individual responses. Responses
